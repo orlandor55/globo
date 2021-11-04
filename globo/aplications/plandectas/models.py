@@ -46,9 +46,9 @@ class SumasYSaldos(models.Model):
     mes_inicio = models.FloatField(
         'Mes de Inicio', 
         blank=True)
-    cierre_anterior = models.FloatField(
-        'Cierre Anterior',
-        default=0
+    cierre_anterior = models.CharField(
+        'Mes de Cierre Anterior',
+        max_length=10
         )
     axi_ejercicio_anterior = models.FloatField(
         'Ajuste por Inflación Inicial', 
