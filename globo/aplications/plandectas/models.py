@@ -1,6 +1,25 @@
 from django.db import models
 
 # Create your models here.
+
+
+class EmpresasClientes(models.Model):
+    """Model definition for EmpresaCliente."""
+    nombre = models.CharField('Nombre del Cliente', max_length=50)
+    cuit = models.CharField('CUIT', max_length=15)
+
+    class Meta:
+        """Meta definition for EmpresaCliente."""
+
+        verbose_name = 'Empresa Cliente'
+        verbose_name_plural = 'Empresas Clientes'
+
+    def __str__(self):
+        return self.nombre
+
+
+
+
 class CtasContable(models.Model):
     MONETARIO_NO_MONETARIO = (
         ('0', 'M'),
@@ -20,14 +39,14 @@ class CtasContable(models.Model):
             ('4', 'RESULTADOS DEL EJERCICIO'),
     )
 
-    empresa = models.CharField('Cliente', max_length=50)
-    codigo = models.CharField('Código Contable', max_length=15)
+    codigo = models.CharField('Código Contable', max_length=15, unique=True)
     descripcion = models.CharField('Descripción de Cta', max_length=50)
     grupo = models.CharField('Grupo', max_length=15, choices=GRUPO)
     subgrupo = models.CharField('Sub-Grupo', max_length=25, choices=SUB_GRUPO)
     rubro = models.CharField('Rubro', max_length=25)
     subrubro = models.CharField('Sub-rubro', max_length=50)
     monetario = models.CharField('Monetario/No Monetario', max_length=2, choices=MONETARIO_NO_MONETARIO)
+    nombre_cliente = models.ForeignKey(EmpresasClientes, on_delete=models.CASCADE)
     #cta_relacionada = models.ForeignKey(OTHERMODEL, on_delete=models.CASCADE)
 
 
