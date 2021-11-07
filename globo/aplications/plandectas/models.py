@@ -55,7 +55,7 @@ class CtasContable(models.Model):
         verbose_name_plural = 'Códigos de Cuentas'
 
     def __str__(self):
-        return self.codigo + ' - ' + self.subrubro
+        return self.codigo + ' - ' + self.descripcion
 
 
 class SumasYSaldos(models.Model):
